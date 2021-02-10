@@ -1,10 +1,17 @@
 import { CloudUploadOutlined } from "@ant-design/icons";
 import { Upload, message } from "antd";
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import Context from "../context";
 
 const { Dragger } = Upload;
 
 export default function Train() {
+  const context = useContext(Context);
+
+  useEffect(() => {
+    context?.setPage("train");
+  });
+
   const props = {
     name: "file",
     multiple: true,

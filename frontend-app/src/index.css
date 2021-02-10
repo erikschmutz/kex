@@ -8,6 +8,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+:root {
+  --color-primary: #001529;
+  --color-secondary: #e8e8e8;
+}
+
 #root {
   height: 100%;
 }

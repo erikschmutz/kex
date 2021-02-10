@@ -1,7 +1,5 @@
 {
-  "configuration": {
-    "dataset": "fruits-360",
-    "activation-function": "relu",
-    "script": "train.py"
-  }
+  "dataset": "fruits-360",
+  "script": "train.py",
+  "activation": "relu"
 }
