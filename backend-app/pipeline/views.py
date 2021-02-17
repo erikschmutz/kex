@@ -10,7 +10,6 @@ def config(request):
     config_data = staticfiles_storage.open("config.json")
     config_json = json.load(config_data)
     config_data.close()
-    print(config_json)
 
     return JsonResponse(config_json)
 
