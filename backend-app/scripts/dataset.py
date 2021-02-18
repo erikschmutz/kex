@@ -22,13 +22,14 @@ def get_features(img_path):
     resnet_features = resnet50.predict(img_data)
     return resnet_features
 
-def make_dataset(data_dir):
+def make_dataset(config):
+    print("- Processing dataset -")
     features = {}
 
-    for label in os.listdir(data_dir):
+    for label in os.listdir(config.data_dir):
         features[label] = []
 
-        img_dir = os.path.join(data_dir, label)
+        img_dir = os.path.join(config.data_dir, label)
         for img in tqdm(os.listdir(img_dir)):
 
             # Training/Banana/img.jpg
@@ -49,20 +50,15 @@ def make_dataset(data_dir):
     X = dataset.drop('label', axis=1)
     Y = dataset.label
 
-    return [X, Y]
+    return train_test_split(X, Y, test_size=0.25,random_state=42)
 
-def process(config):
-    data_dir = f'./{config.target}/data'
-    dataset_save = f'./{config.target}/dataset.bin'
-
-    [X, Y] = make_dataset(data_dir)
-    split_dataset=train_test_split(X, Y, test_size=0.25,random_state=42)
-
-    pickle.dump(split_dataset, open(dataset_save, 'wb'))
+def save_dataset(config, dataset):
+    print("- Saving dataset -")
+    pickle.dump(dataset, open(config.dataset_save, 'wb'))
 
 def load_dataset(config):
-    dataset_save = f'./{config.target}/dataset.bin'
-    return pickle.load(open(dataset_save, 'rb'))
+    print("- Loading dataset -")
+    return pickle.load(open(config.dataset_save, 'rb'))
 
 
 

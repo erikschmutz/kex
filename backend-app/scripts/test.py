@@ -1,17 +1,20 @@
-
-from process import load_dataset
+from sklearn.metrics import confusion_matrix
+from dataset import load_dataset
 from train import load_model
 
-def test(config):
+def test_model(config):
     _,x_test,_,y_test = load_dataset(config)
     model = load_model(config)
 
+    print("- Testing model -")
     preds = model.predict(x_test)
-    result = model.score(x_test, y_test)
+    score = model.score(x_test, y_test)
 
-    print(f"Total score {result}\n")
+    labels = y_test.values
 
     for i in range(len(preds)):
-        print(f"[{i}] Predicted: {preds[i]}, Label: {y_test[i]}\n")
+        print(f"[{i}]\nLabel: {labels[i]}\nPredicted: {preds[i]}\n")
+
+    print(f"Total score {score}\n")
 
 
