@@ -32,6 +32,10 @@ class Model {
       body: JSON.stringify(data),
     }).then(this.processResponse);
   }
+
+  train(config: IConfig) {
+    return this.post("/train/", config);
+  }
 }
 
 export default new Model();
