@@ -4,8 +4,8 @@ import pickle
 from dataset import load_dataset
 from sklearn.neural_network import MLPClassifier
 
-def train_model(config):
-    x_train, _, y_train, _ = load_dataset(config)
+def train_model(config, dataset):
+    x_train, _, y_train, _ = dataset
 
     # print("- Training model -")
     model = MLPClassifier(hidden_layer_sizes=(100, 10), activation=config.activation, solver=config.solver)
