@@ -1,0 +1,1 @@
+ssh -i ".local/kex-pem.pem" ec2-user@ec2-34-242-228-37.eu-west-1.compute.amazonaws.com 
