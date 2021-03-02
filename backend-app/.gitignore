@@ -1,3 +1,4 @@
 fruits-360/
 venv/
-example/
+example/models
+example/dataset.bin
