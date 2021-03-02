@@ -1,8 +1,7 @@
-from dataset import make_dataset, save_dataset
+import time;
 from train import train_model, save_model
-from test import test_model
 from config import make_config
-import json
+import sys
 
 
 config = make_config("""{
@@ -11,8 +10,10 @@ config = make_config("""{
     "solver":"adam"
 }""")
 
-dataset = make_dataset(config)
-save_dataset(config, dataset)
+
+
+start_time = time.time()
 model = train_model(config)
-save_model(config, model)
-test_model(config)
+end_time = time.time()
+
+print("Took " , (end_time-start_time), "s to train model...", file=sys.stderr)

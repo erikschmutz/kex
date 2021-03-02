@@ -3,8 +3,6 @@ from keras.applications.vgg16 import preprocess_input
 from keras.applications.resnet50 import ResNet50
 from keras.preprocessing import image
 from tqdm import tqdm
-import matplotlib.pyplot as plt
-import seaborn as sns
 import pandas as pd
 import numpy as np
 import pickle
