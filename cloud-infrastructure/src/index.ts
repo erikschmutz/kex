@@ -13,7 +13,8 @@ class KexStack extends cdk.Stack {
       "sudo yum update -y",
       "sudo yum install git -y",
       "git clone https://github.com/erikschmutz/kex.git",
-      "cd kex && chmod 777 start.sh && ./start.sh > log.txt 2> error.txt"
+      "sudo chmod -R 777 kex/**/*",
+      "cd kex && ./start.sh > log.txt 2> error.txt"
     );
 
     const linuxImage = new ec2.AmazonLinuxImage({
