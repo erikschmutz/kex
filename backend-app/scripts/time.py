@@ -19,3 +19,4 @@ model = train_model(config, dataset)
 end_time = time.time()
 
 print("Took ", (end_time-start_time), "s to train model...")
+exit()
