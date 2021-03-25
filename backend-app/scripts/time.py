@@ -13,6 +13,7 @@ config = make_config("""{
 
 
 dataset = make_dataset(config)
+print("done with dataset...")
 start_time = time.time()
 model = train_model(config, dataset)
 end_time = time.time()
