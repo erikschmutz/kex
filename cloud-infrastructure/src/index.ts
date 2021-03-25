@@ -12,9 +12,7 @@ class KexStack extends cdk.Stack {
       "cd /home/ec2-user",
       "sudo yum update -y",
       "sudo yum install git -y",
-      "git clone https://github.com/erikschmutz/kex.git",
-      "sudo chmod -R 777 kex/**/*",
-      "cd kex && chmod 777 ./start.sh && ./start.sh > log.txt 2> error.txt"
+      "git clone https://github.com/erikschmutz/kex.git"
     );
 
     const linuxImage = new ec2.AmazonLinuxImage({
@@ -43,7 +41,7 @@ class KexStack extends cdk.Stack {
       role,
       instanceType: ec2.InstanceType.of(
         ec2.InstanceClass.T3,
-        ec2.InstanceSize.MEDIUM
+        ec2.InstanceSize.SMALL
       ),
       userData,
       instanceName: "KexInstanceName",
