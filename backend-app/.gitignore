@@ -1,7 +1,5 @@
 fruits-360/
 venv/
-example/models
-example/dataset.bin
 
 *.bin
 # Byte-compiled / optimized / DLL files

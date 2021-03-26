@@ -1,4 +1,3 @@
-from sklearn.model_selection import train_test_split
 from keras.applications.vgg16 import preprocess_input
 from keras.applications.resnet50 import ResNet50
 from keras.preprocessing import image
@@ -20,9 +19,9 @@ def get_features(img_path):
     resnet_features = resnet50.predict(img_data)
     return resnet_features
 
-def make_dataset(config):
-    print("- Processing dataset -")
+def make_dataset(config, limit=None):
     features = {}
+    count = 0
 
     for label in os.listdir(config.data_dir):
         features[label] = []
@@ -36,6 +35,15 @@ def make_dataset(config):
             feats = get_features(img_path)
             features[label].append(feats.flatten())
 
+            count += 1
+
+            if limit != None and count > limit:
+                break
+        else:
+            continue
+
+        break
+
     dataset = pd.DataFrame()
 
     for label, feats in features.items():
@@ -48,14 +56,12 @@ def make_dataset(config):
     X = dataset.drop('label', axis=1)
     Y = dataset.label
 
-    return train_test_split(X, Y, test_size=0.25,random_state=42)
+    return X,Y
 
 def save_dataset(config, dataset):
-    print("- Saving dataset -")
     pickle.dump(dataset, open(config.dataset_save, 'wb'))
 
 def load_dataset(config):
-    print("- Loading dataset -")
     return pickle.load(open(config.dataset_save, 'rb'))
 
 
