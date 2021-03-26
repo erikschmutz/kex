@@ -39,18 +39,21 @@ def train_loop():
     limit = 200
     incr = 10
     datastr = ""
-    X,Y = dataset
     for i in range(incr, limit+incr, incr):
-        Xn = X[0:i]
-        Yn = Y[0:i]
-
-        time = train([Xn, Yn])
+        time = train_specfic(i)
         timestr = f'{i} {time}\n'
         print(timestr)
         datastr += timestr
 
     with open(f'train_{config.name}_{limit}.dat', 'w') as file:
         file.write(datastr)
+
+def train_specfic(i):
+    X,Y = dataset
+    Xn = X[0:i]
+    Yn = Y[0:i]
+
+    return train([Xn, Yn])
 
 def train_all():
     X,Y = dataset
