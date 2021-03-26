@@ -1,0 +1,17 @@
+ec2.InstanceClass.T3,
+ec2.InstanceSize.MEDIUM
+generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2
+
+data:
+7.165921926498413 s
+7.879275798797607 s
+
+
+ec2.InstanceClass.T3,
+ec2.InstanceSize.LARGE
+generation: ec2.AmazonLinuxGeneration.AMAZON_LINUX_2
+
+data:
+7.998620510101318 s
+7.742201566696167 s
+10.070899486541748 s

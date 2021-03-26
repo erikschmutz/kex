@@ -20,5 +20,5 @@ pip3 install -r requirements.txt
 echo "Changing directory to scripts/ ..."
 cd scripts
 
-python3 time.py > result.txt
+python3 time.py 
 # ec2
