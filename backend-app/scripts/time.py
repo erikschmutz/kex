@@ -36,7 +36,7 @@ def train(dataset):
     return end_time-start_time
 
 def train_loop():
-    limit = 200
+    limit = 1000
     incr = 10
     datastr = ""
     for i in range(incr, limit+incr, incr):
