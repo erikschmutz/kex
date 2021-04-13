@@ -19,7 +19,7 @@ def get_features(img_path):
     resnet_features = resnet50.predict(img_data)
     return resnet_features
 
-def make_dataset(config, limit=None):
+def make_dataset(config):
     features = {}
     count = 0
 
@@ -37,7 +37,7 @@ def make_dataset(config, limit=None):
 
             count += 1
 
-            if limit != None and count > limit:
+            if config.limit != None and count > config.limit:
                 break
         else:
             continue

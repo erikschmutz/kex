@@ -7,7 +7,8 @@ import sys
 config = make_config("""{
     "target":"example",
     "activation":"relu",
-    "solver":"adam"
+    "solver":"adam",
+    "limit": 500
 }""")
 
 try:
@@ -18,15 +19,9 @@ except:
 
 def features(limit):
     start_time = time.time()
-    make_dataset(config, limit)
+    make_dataset(config)
     end_time = time.time()
     return end_time-start_time
-
-def features_loop():
-    for i in range(0, 10):
-        limit = 10*i
-        time = features(limit)
-        print(time)
 
 def train(dataset):
     X,Y = dataset
@@ -36,16 +31,15 @@ def train(dataset):
     return end_time-start_time
 
 def train_loop():
-    limit = 1000
     incr = 10
     datastr = ""
-    for i in range(incr, limit+incr, incr):
+    for i in range(incr, config.limit+incr, incr):
         time = train_specfic(i)
         timestr = f'{i} {time}\n'
         print(timestr)
         datastr += timestr
 
-    with open(f'train_{config.name}_{limit}.dat', 'w') as file:
+    with open(f'train_{config.name}.dat', 'w') as file:
         file.write(datastr)
 
 def train_specfic(i):
@@ -63,8 +57,7 @@ def train_all():
     print("Took ", (end_time-start_time), "s to train model...")
 
 arg = sys.argv[1]
-if arg == "features_loop": features_loop()
-elif arg == "train_loop": train_loop()
+if arg == "train_loop": train_loop()
 elif arg == "train_all":  train_all()
 
 exit()
