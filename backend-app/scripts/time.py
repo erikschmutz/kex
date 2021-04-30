@@ -8,7 +8,7 @@ config = make_config("""{
     "target":"example",
     "activation":"relu",
     "solver":"adam",
-    "limit": 1000
+    "limit": 200
 }""")
 
 try:
@@ -17,7 +17,9 @@ except:
     dataset = make_dataset(config)
     save_dataset(config, dataset)
 
-def features(limit):
+print("loaded dataset")
+
+def features():
     start_time = time.time()
     make_dataset(config)
     end_time = time.time()
@@ -34,6 +36,7 @@ def train_loop():
     incr = 25
     datastr = ""
     for i in range(incr, config.limit+incr, incr):
+        print(f"incr {i}")
         time = train_specfic(i)
         timestr = f'{i} {time}\n'
         print(timestr)
@@ -59,5 +62,6 @@ def train_all():
 arg = sys.argv[1]
 if arg == "train_loop": train_loop()
 elif arg == "train_all":  train_all()
+elif arg == "features": features()
 
 exit()
