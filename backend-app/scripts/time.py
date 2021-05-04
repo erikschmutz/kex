@@ -8,7 +8,7 @@ config = make_config("""{
     "target":"example",
     "activation":"relu",
     "solver":"adam",
-    "limit": 200
+    "limit": 1000
 }""")
 
 try:
